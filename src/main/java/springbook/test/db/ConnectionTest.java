@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class ConnectionTest {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao userDao = new UserDao();
+        UserDao userDao;
 
         // 등록
         User user = new User();
-        user.setId("whiteship4");
+        user.setId("whiteship5");
         user.setName("백기선");
         user.setPassword("married");
         userDao.add(user);
