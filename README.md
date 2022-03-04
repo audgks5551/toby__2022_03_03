@@ -1,0 +1,9 @@
+# Entity
+## User
+```roomsql
+CREATE TABLE users (
+id VARCHAR(50) PRIMARY KEY,
+NAME VARCHAR(50),
+PASSWORD VARCHAR(50)
+);
+```
