@@ -19,6 +19,16 @@ public class UserDao {
      * 이것이 의존성 주입!!
      * 주입을 설정하는 곳은 밖에서 한다.
      * 결론적으로 매번 여기로 들어와 DB Connection을 수작업으로 주입할 필요가 없어졌다
+     *
+     * ** 개방 폐쇄 원칙 (OCP: The Open Closed Principle) **
+     * - DB 연결방법은 확장
+     * - 핵심기능은 폐쇄
+     *
+     * ** 전략 패턴 **
+     * 자신의 기능 맥락에서, 필요에 따라 변경이 필요한 알고리즘을 인터페이스를 통해 통째로 외부로 분리시키고,
+     * 이를 구현한 구체적인 알고리즘 클래스를 필요에 따라 바꿔서 사용할 수 있게 하는 디자인패턴이다
+     * (1) UserDao == context
+     * (2) UserDaoTest == client : context의 생성자를 주입
       */
     // protected void hookMethod() { } // 훅 메서드 : 선택적 오버라이드가능한 메서드
 //    public abstract Connection getConnection() throws SQLException; // 추상 메서드 : 반드시 구현해야하는 메서드
