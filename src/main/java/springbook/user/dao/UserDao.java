@@ -2,6 +2,7 @@ package springbook.user.dao;
 
 import springbook.user.domain.User;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 // 슈퍼 클래스 : 변하는 부분을 메서드로 묶어 서브 클래스가 구현할 수 있도록 하는 클래스
@@ -33,7 +34,7 @@ public class UserDao {
     // protected void hookMethod() { } // 훅 메서드 : 선택적 오버라이드가능한 메서드
 //    public abstract Connection getConnection() throws SQLException; // 추상 메서드 : 반드시 구현해야하는 메서드
     private ConnectionMaker connectionMaker; // 기존의 커넥션을 독립적으로 만듬
-
+    private DataSource dataSource;
     public UserDao() {}
 
     // 변경 부분을 인터페이스로 만들어 주게 되면 이 클래스의 변경없이 다양한 Connection을 연결할 수 있다.
@@ -46,8 +47,12 @@ public class UserDao {
         this.connectionMaker = connectionMaker;
     }
 
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     public void add(User user) throws SQLException {
-        Connection c = connectionMaker.makeNewConnection();
+        Connection c = dataSource.getConnection();
         System.out.println("DB 연동됨");
 
         PreparedStatement ps = c.prepareStatement(
@@ -77,7 +82,7 @@ public class UserDao {
     }
 
     public User get(String id) throws SQLException {
-        Connection c = connectionMaker.makeNewConnection();
+        Connection c = dataSource.getConnection();
 
         PreparedStatement ps = c.prepareStatement(
                 "select * from users where id = ?"
