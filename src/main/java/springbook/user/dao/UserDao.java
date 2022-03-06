@@ -34,8 +34,15 @@ public class UserDao {
 //    public abstract Connection getConnection() throws SQLException; // 추상 메서드 : 반드시 구현해야하는 메서드
     private ConnectionMaker connectionMaker; // 기존의 커넥션을 독립적으로 만듬
 
+    public UserDao() {}
+
     // 변경 부분을 인터페이스로 만들어 주게 되면 이 클래스의 변경없이 다양한 Connection을 연결할 수 있다.
     public UserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
+    }
+
+    // 수정자 메서드
+    public void setConnectionMaker(ConnectionMaker connectionMaker) {
         this.connectionMaker = connectionMaker;
     }
 
