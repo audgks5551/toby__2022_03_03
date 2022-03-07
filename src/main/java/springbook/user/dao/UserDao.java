@@ -1,6 +1,7 @@
 package springbook.user.dao;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Component;
 import springbook.user.domain.User;
 
 import javax.sql.DataSource;
